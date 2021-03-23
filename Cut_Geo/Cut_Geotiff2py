@@ -1,0 +1,18 @@
+import os
+from osgeo import gdal
+
+directory = r'C:\Users\Administrator\Documents\Plot Geotiff\data'
+dataset = []
+for filename in os.listdir(directory):
+    if filename.endswith(".tif"):
+        ds = gdal.Open(os.path.join(directory, filename))
+        ds = gdal.Translate('./Cropped_tifs/cropped_'+ filename, ds, projWin = [-45, -21 ,-42, -24]) #<ulx> <uly> <lrx> <lry> talvez.. = [-47,-20 ,-42,-25] 
+        ds = None
+    else:
+        continue
+
+
+#ds = gdal.Open(r"C:\Users\Administrator\Documents\Plot Geotiff\wc2.1_30s_prec_01.tif")
+#ds = gdal.Translate('./croppedWc.tif', ds, projWin = [-45, -21 ,-42, -24]) #<ulx> <uly> <lrx> <lry> talvez.. = [-47,-20 ,-42,-25] 
+
+#ds = None
